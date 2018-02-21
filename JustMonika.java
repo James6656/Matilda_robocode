@@ -24,13 +24,13 @@ import java.awt.geom.*;
 
 /**
  * Matilda - Robot built with survivability in mind
- * 
+ * (Renamed JustMonika due to reverse engineering from AdvancedRobot class)
  * Lock on to nearest robot, dodge and shoot.
  *
  * @author Neal (original)
  * @contributor Thomas (Movement code)
  */
-public class Matilda extends Robot {
+public class JustMonika extends Robot {
 	int count = 0; // Keeps track of turn count
 	double gunTurnAmt; // gun Turn value
 	String trRobotName; // the Name of the Robot currently tracking
@@ -42,8 +42,7 @@ public class Matilda extends Robot {
 		setBodyColor(new Color(200, 128, 50));
 		setGunColor(new Color(100, 50, 20));
 		setRadarColor(new Color(50, 50, 70));
-		setScanColor(Color.red);
-		setBulletColor(Color.green);
+		setScanColor(Color.white);
 
 		// Gun vars - Design defaults (Neal)
 		trRobotName = null; // Forget Tracking for now.. 
@@ -75,24 +74,17 @@ public class Matilda extends Robot {
 		double enemyY = getY() + e.getDistance() * Math.cos(absoluteBearing);
 		double enemyHeading = e.getHeadingRadians();
 		double enemyVelocity = e.getVelocity();
-	//	double gunTurnAmt = 360; // Set gun Turn one whole rotation
-		//	double previousEnergy = 100;
 		
-			//The Enemy has fired a bullet
-		
-		
+		// Is target the sentry bot??	
 		if (e.isSentryRobot() == true){
-	//	turnRadarRight(999);
+		//turnRadarRight(999);
 		//turnGunRight(999);
 		}
 		else{
-	
-		 
-		 
-		double deltaTime = 0;
-		double battleFieldHeight = getBattleFieldHeight(), 
-		       battleFieldWidth = getBattleFieldWidth();
-		double predictedX = enemyX, predictedY = enemyY;
+			double deltaTime = 0;
+			double battleFieldHeight = getBattleFieldHeight(), 
+		 	      battleFieldWidth = getBattleFieldWidth();
+			double predictedX = enemyX, predictedY = enemyY;
 			while((++deltaTime) * (18.0 - 3.0 * bulletPower) < 
 				  Point2D.Double.distance(myX, myY, predictedX, predictedY)){		
 				predictedX += Math.sin(enemyHeading) * enemyVelocity;	
@@ -108,9 +100,9 @@ public class Matilda extends Robot {
 					break;
 				}
 
-					//angle theta for atan(delta)
-					double theta = Utils.normalAbsoluteAngle(Math.atan2(
-						predictedX - getX(), predictedY - getY()));
+				//angle theta for atan(delta)
+				double theta = Utils.normalAbsoluteAngle(Math.atan2(
+					predictedX - getX(), predictedY - getY()));
 
 //				setTurnRadarRightRadians(Utils.normalRelativeAngle(absoluteBearing - e.getRadarHeadingRadians()));
 //				setTurnGunRightRadians(Utils.normalRelativeAngle(theta - getGunHeadingRadians()));
