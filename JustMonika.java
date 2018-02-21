@@ -28,7 +28,8 @@ import java.awt.geom.*;
  * Lock on to nearest robot, dodge and shoot.
  *
  * @author Neal (original)
- * @contributor Thomas (Movement code)
+ *@contributor Thomas (Movement code)
+ *@contributor James(Defence)
  */
 public class JustMonika extends Robot {
 	int count = 0; // Keeps track of turn count
